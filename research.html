@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research — Leo Leitzinger</title>
+
+  <!-- Favicon hardfix with new filenames + cache-busting -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-2025.png?v=5">
+  <link rel="icon" type="image/png" sizes="32x32" href="/ll-icon-32.png?v=5">
+  <link rel="icon" type="image/png" sizes="16x16" href="/ll-icon-16.png?v=5">
+  <link rel="icon" href="/ll-icon-2025.ico?v=5" sizes="any">
+  <link rel="shortcut icon" href="/ll-icon-2025.ico?v=5">
+
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg:#faf8f3; --text:#1a1a1a; --muted:#555; --border:#ddd; --maxw:820px; }
+    html{ background:var(--bg); }
+    body{ margin:0; background:var(--bg); color:var(--text);
+      font-family:'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size:16px; line-height:1.7; }
+    a{ color:inherit; text-decoration:none; }
+
+    .wrap{ max-width:var(--maxw); width:100%; margin:0 auto; padding:0 20px; }
+    .wrap.header-wrap{ padding-left:0; }
+
+    header{ margin-bottom:80px; }
+
+    .nav{ display:flex; align-items:center; justify-content:space-between; height:56px; }
+    .brand{ font-weight:400; font-size:22px; margin-left:-20px; }
+    .brand a{ text-decoration:none; }
+
+    .menu{ display:flex; gap:18px; list-style:none; margin:0; padding:0; }
+    .menu a{ text-decoration:none; }
+
+    main{ padding:0 0 60px; }
+    h2{ font-size:20px; margin:18px 0 8px; font-weight:600; }
+    h2.section-break{ margin-top:36px; }
+
+    .papers{ list-style:none; padding-left:0; margin:0; }
+    .papers li{ margin:12px 0 18px; }
+
+    .title{ display:inline; font-weight:400; text-decoration:underline; white-space:normal; }
+    .meta{ display:block; color:var(--muted); font-size:15px; }
+
+    @media (min-width: 900px){
+      .title{ white-space:nowrap; }
+    }
+
+    footer{ position:fixed; left:10px; bottom:10px; color:var(--muted); font-size:14px; padding:0; }
+  </style>
+  <link rel="stylesheet" href="responsive-fixes.css">
+</head>
+<body class=\"research-page\">
+  <header>
+    <div class="wrap header-wrap nav">
+      <div class="brand"><a href="/">Leo Leitzinger</a></div>
+      <nav aria-label="Primary">
+        <ul class="menu">
+          <li><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
+          <li><a href="research.html">Research</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h2>Working Papers</h2>
+    <ul class="papers">
+      <li>
+        <span class="title">Collateral Laws and Enforcement: Evidence from Indian Country</span>
+        <span class="meta">(single-authored JMP)</span>
+        <span class="meta">Working Paper, September 2025</span>
+      </li>
+      <li>
+        <a class="title" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4260877" target="_blank" rel="noopener noreferrer">
+          Debt Financing in the Knowledge Economy: Evidence from Intellectual Property as Loan Collateral
+        </a>
+        <span class="meta">(with Laurie Ciaramella and David Heller)</span>
+        <span class="meta"><em>Journal of Financial and Quantitative Analysis</em> — R&amp;R</span>
+      </li>
+      <li>
+        <span class="title">Formal Granting of Intellectual Property Rights and External Financing</span>
+        <span class="meta">(with Laurie Ciaramella and David Heller)</span>
+        <span class="meta">Working Paper, September 2025</span>
+      </li>
+    </ul>
+
+    <h2 class="section-break">Other Publications</h2>
+    <ul class="papers">
+      <li>
+        <a class="title" href="https://doi.org/10.1093/grurint/ikae043" target="_blank" rel="noopener noreferrer">
+          Intellectual Property as Business Loan Collateral: A Taxonomy of Institutional and Economic Determinants
+        </a>
+        <span class="meta">(with David Heller and Uwe Walz)</span>
+        <span class="meta"><em>GRUR International</em>, May 2024</span>
+      </li>
+    </ul>
+  </main>
+
+  <footer>© <span class="year"></span> Leo Leitzinger</footer>
+  <script>
+    document.querySelectorAll('.year').forEach(el => { el.textContent = new Date().getFullYear(); });
+  </script>
+</body>
+</html>
