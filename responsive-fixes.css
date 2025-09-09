@@ -1,4 +1,4 @@
-/* === Responsive fixes (full replacement) — 2025-09-09 === */
+/* === Responsive fixes (full replacement) — updated with mobile header padding === */
 
 /* 1) Predictable sizing */
 *, *::before, *::after { box-sizing: border-box; }
@@ -62,9 +62,8 @@ main > :first-child {                     /* remove stray top margins */
   margin-top: 0 !important;
 }
 
-/* 5a) Match homepage header offset on Research only
-      (requires <body class="research-page"> in research.html) */
-body.research-page { padding-top: 32px; }  /* homepage had this inline; mirror it here */
+/* 5a) Match homepage header offset on Research only */
+body.research-page { padding-top: 32px; }
 
 /* 6) Sections never touch screen edges */
 section, .section {
@@ -72,7 +71,7 @@ section, .section {
   padding-inline: clamp(16px, 5vw, 48px);
 }
 
-/* 7) Grids/stacks use responsive gaps (replacing fixed 56px) */
+/* 7) Grids/stacks use responsive gaps */
 .grid, .stack {
   display: grid;
   gap: clamp(12px, 4vw, 56px);
@@ -88,8 +87,15 @@ img, video, canvas, svg {
 /* 9) Small-screen niceties */
 @media (max-width: 768px) {
   nav { overflow-x: auto; }    /* long menus remain usable */
+
+  /* Add breathing room for brand + nav on mobile */
+  .wrap.header-wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .brand {
+    margin-left: 0;
+  }
 }
-
-
 
 
