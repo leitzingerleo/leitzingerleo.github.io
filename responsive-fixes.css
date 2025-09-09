@@ -1,112 +1,95 @@
-/* === Responsive fixes injected by ChatGPT on 2025-09-08 === */
+/* === Responsive fixes (full replacement) — 2025-09-09 === */
 
-/* 1) Universal box sizing */
+/* 1) Predictable sizing */
 *, *::before, *::after { box-sizing: border-box; }
 
-/* 2) Side padding for narrow screens */
+/* 2) Page side padding (phones → desktops) */
+html, body { margin: 0; }
 body {
-  margin: 0;
   padding-inline: clamp(16px, 5vw, 48px);
   padding-bottom: clamp(24px, 6vh, 64px);
 }
 
-/* If you use a main/content wrapper, apply the padding there instead */
-.main, .content, .page, main {
-  max-width: 75rem;
+/* 3) Content wrapper (center + readable line length) */
+main, .page, .content, .main {
+  max-width: 75rem;            /* ~1200px */
   margin-inline: auto;
   padding-inline: clamp(16px, 5vw, 48px);
 }
 
-/* 3) Header layout that shrinks/wraps instead of clipping */
-header, .header {
+/* 4) Header layout + stability (no jumping) */
+header, .header { display: block; }
+.header-wrap, header .wrap, header .header-wrap {
   display: flex;
   align-items: center;
   gap: clamp(12px, 4vw, 24px);
+  min-height: 56px;            /* lock header row height */
 }
-header > *, .header > * { min-width: 0; }
+header .wrap > *, header .header-wrap > * { min-width: 0; }  /* prevent clipping in flex */
 
-/* Wrap long site names instead of clipping (brand only) */
+/* 4a) Brand/site name: shrink/wrap instead of clipping */
 header .site-name, header .site-title, header .brand, header .header__brand,
 .header .site-name, .header .site-title, .header .brand, .header .header__brand {
   display: block;
   max-width: min(60vw, 32rem);
-  font-size: clamp(18px, 3.5vw, 24px); /* keep name prominent but not huge */
+  font-size: clamp(18px, 3.5vw, 24px);
   line-height: 1.1;
   white-space: normal;
   overflow-wrap: anywhere;
   text-wrap: balance;
 }
 
-/* 4) Section padding so text never touches edges */
+/* 4b) Navigation sizing and active state (no reflow) */
+.menu a, nav a {
+  font-size: clamp(12px, 2.5vw, 16px);
+  font-weight: 500;            /* same weight in all states to avoid layout shift */
+  line-height: 1.2;
+  text-decoration: none;
+}
+.menu a.active,
+.menu a[aria-current="page"] {
+  font-weight: 500;            /* avoid bold jump */
+  text-decoration: underline;  /* visual indicator without reflow */
+}
+/* Prevent browser “fake bold” metric changes */
+html { font-synthesis-weight: none; }
+
+/* 5) Top spacing for content (v6 behavior) */
+main {
+  padding-top: clamp(40px, 8vw, 80px);   /* single source of truth below header */
+}
+main > :first-child {                     /* remove stray top margins */
+  margin-top: 0 !important;
+}
+
+/* 5a) Match homepage header offset on Research only
+      (requires <body class="research-page"> in research.html) */
+body.research-page { padding-top: 32px; }  /* homepage had this inline; mirror it here */
+
+/* 6) Sections never touch screen edges */
 section, .section {
   padding-block: clamp(20px, 6vw, 80px);
   padding-inline: clamp(16px, 5vw, 48px);
 }
 
-/* 5) Make large gaps responsive */
+/* 7) Grids/stacks use responsive gaps (replacing fixed 56px) */
 .grid, .stack {
   display: grid;
   gap: clamp(12px, 4vw, 56px);
 }
 
-/* 6) Media should not overflow */
+/* 8) Media is fluid */
 img, video, canvas, svg {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* 7) Nav overflow safety on mobile */
+/* 9) Small-screen niceties */
 @media (max-width: 768px) {
-  nav { overflow-x: auto; }
+  nav { overflow-x: auto; }    /* long menus remain usable */
 }
 
-
-/* Keep nav links smaller than the site name */
-header nav a, .header nav a {
-  font-size: clamp(12px, 2.5vw, 16px);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-
-/* Typographic scale */
-h1 { font-size: clamp(22px, 5vw, 32px); line-height: 1.1; }
-h2 { font-size: clamp(18px, 4vw, 24px); line-height: 1.2; }
-h3 { font-size: clamp(16px, 3vw, 20px); line-height: 1.3; }
-
-
-
-
-/* Optional: small, consistent padding at the top of the header so brand isn't glued to the edge */
-header .wrap,
-header .header-wrap {
-  padding-top: clamp(10px, 2.5vw, 18px);
-}
-
-
-/* === Unified top spacing: zero first-child margin, control via main padding === */
-main {
-  padding-top: clamp(40px, 8vw, 80px);
-}
-main > :first-child {
-  margin-top: 0 !important;
-}
-
-
-/* break margin-collapsing across pages */
-  display: flow-root;                 /* create a new BFC to prevent escapes */
-}
-
-/* Ensure common first blocks don't reintroduce top margin */
-main > .grid:first-child,
-main > .wrap:first-child,
-main > div:first-child,
-main > section:first-child,
-main > h1:first-child,
-main > h2:first-child {
-  margin-top: 0 !important;
-}
 
 
 
